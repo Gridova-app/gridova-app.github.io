@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SeshatX — Offline, local-first data manager</title>
+<meta name="description" content="SeshatX is a subscription-free, fully offline desktop data manager. Dynamic tables, auto analysis, calendar, backups — your data stays on your own PC." />
+<style>
+  :root{
+    --bg:#ffffff; --fg:#0f172a; --muted:#64748b; --line:#e5e7eb;
+    --primary:#2563eb; --primary-fg:#ffffff; --card:#f8fafc; --shadow:0 8px 30px rgba(2,6,23,.08);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0b1120; --fg:#e2e8f0; --muted:#94a3b8; --line:#1e293b;
+           --primary:#3b82f6; --card:#0f172a; --shadow:0 8px 30px rgba(0,0,0,.4); }
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:var(--bg); color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans","Noto Sans KR","Noto Sans JP",Helvetica,Arial,sans-serif;
+    line-height:1.7; font-size:16px; -webkit-font-smoothing:antialiased; }
+  .wrap{ max-width:1040px; margin:0 auto; padding:0 20px; }
+
+  /* header */
+  header.top{ position:sticky; top:0; z-index:10; background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  header.top .row{ display:flex; align-items:center; justify-content:space-between; height:60px; }
+  .brand{ display:flex; align-items:center; gap:10px; font-weight:800; font-size:18px; letter-spacing:-.01em; }
+  .brand svg{ width:26px; height:26px; color:var(--primary); }
+  .toggle{ display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+  .toggle button{ border:0; background:transparent; color:var(--muted); padding:6px 14px; font-size:13px; cursor:pointer; font-weight:600; }
+  .toggle button.active{ background:var(--primary); color:var(--primary-fg); }
+
+  /* hero */
+  .hero{ text-align:center; padding:72px 0 40px; }
+  .hero h1{ font-size:clamp(30px,5vw,48px); line-height:1.15; margin:0 0 16px; letter-spacing:-.02em; }
+  .hero p.sub{ font-size:clamp(16px,2.4vw,20px); color:var(--muted); max-width:680px; margin:0 auto 28px; }
+  .cta{ display:inline-flex; align-items:center; gap:10px; background:var(--primary); color:var(--primary-fg);
+    text-decoration:none; font-weight:700; padding:14px 24px; border-radius:12px; box-shadow:var(--shadow); }
+  .cta:hover{ filter:brightness(1.05); }
+  .cta svg{ width:20px; height:20px; }
+  .note{ font-size:13px; color:var(--muted); margin-top:12px; }
+  .badges{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:28px; }
+  .badge{ font-size:13px; color:var(--fg); background:var(--card); border:1px solid var(--line);
+    padding:7px 14px; border-radius:999px; }
+
+  /* showcase */
+  .shot{ display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:center; padding:44px 0; border-top:1px solid var(--line); }
+  .shot:nth-child(even) .txt{ order:2; }
+  .shot img{ width:100%; border-radius:12px; border:1px solid var(--line); box-shadow:var(--shadow); }
+  .shot h3{ font-size:22px; margin:0 0 8px; letter-spacing:-.01em; }
+  .shot p{ color:var(--muted); margin:0; }
+  @media (max-width:760px){ .shot{ grid-template-columns:1fr; gap:18px; } .shot:nth-child(even) .txt{ order:0; } }
+
+  /* features grid */
+  section.block{ padding:56px 0; border-top:1px solid var(--line); }
+  section.block h2{ text-align:center; font-size:28px; margin:0 0 32px; letter-spacing:-.01em; }
+  .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:760px){ .grid{ grid-template-columns:1fr; } }
+  .feat{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 18px; }
+  .feat .ic{ width:34px; height:34px; color:var(--primary); margin-bottom:10px; }
+  .feat b{ display:block; margin-bottom:4px; }
+  .feat span{ color:var(--muted); font-size:14px; }
+
+  /* pillars */
+  .pillars{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media (max-width:760px){ .pillars{ grid-template-columns:1fr; } }
+  .pillar{ text-align:center; padding:8px; }
+  .pillar .big{ font-size:30px; }
+  .pillar b{ display:block; margin:8px 0 4px; font-size:18px; }
+  .pillar span{ color:var(--muted); font-size:14px; }
+
+  footer{ border-top:1px solid var(--line); padding:36px 0 60px; text-align:center; color:var(--muted); font-size:14px; }
+  footer a{ color:var(--primary); text-decoration:none; }
+
+  [data-ko]{ display:none; }
+  html[data-lang="ko"] [data-en]{ display:none; }
+  html[data-lang="ko"] [data-ko]{ display:revert; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap row">
+    <div class="brand">
+      <!-- pencil drawing a 7-point star -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l2 4 4 .5-3 3 .8 4.2L12 16l-3.8 1.7.8-4.2-3-3 4-.5z"/>
+        <path d="M5 21l3-1 9-9-2-2-9 9z"/>
+      </svg>
+      <span>SeshatX</span>
+    </div>
+    <div class="toggle" role="group" aria-label="Language">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-ko" onclick="setLang('ko')">한국어</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>
+      <span data-en>Your data stays on your PC.</span>
+      <span data-ko>내 데이터는 내 PC에만 있습니다.</span>
+    </h1>
+    <p class="sub">
+      <span data-en>SeshatX is an offline, subscription-free data manager — easier than spreadsheets, with dynamic tables, automatic analysis, calendar and backups. No cloud. No login.</span>
+      <span data-ko>SeshatX는 오프라인·구독 없는 데이터 관리 앱입니다. 엑셀보다 쉬운 동적 표, 자동 분석, 달력, 백업까지 — 클라우드도, 로그인도 없습니다.</span>
+    </p>
+    <a class="cta" href="MS_STORE_URL_HERE" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h8v8H3zM13 3h8v8h-8zM3 13h8v8H3zM13 13h8v8h-8z"/></svg>
+      <span data-en>Get it on Microsoft Store</span>
+      <span data-ko>Microsoft Store에서 받기</span>
+    </a>
+    <p class="note">
+      <span data-en>Windows 10 / 11 · one-time purchase · 7-day free trial</span>
+      <span data-ko>Windows 10 / 11 · 1회 구매 · 7일 무료 체험</span>
+    </p>
+    <div class="badges">
+      <span class="badge" data-en>🔒 Fully offline</span><span class="badge" data-ko>🔒 완전 오프라인</span>
+      <span class="badge" data-en>🚫 No subscription</span><span class="badge" data-ko>🚫 구독 없음</span>
+      <span class="badge" data-en>💾 You own your data</span><span class="badge" data-ko>💾 내 데이터는 내 소유</span>
+      <span class="badge" data-en>🌐 7 languages</span><span class="badge" data-ko>🌐 7개 언어</span>
+    </div>
+  </div>
+
+  <!-- SHOWCASE -->
+  <div class="shot">
+    <div class="txt">
+      <h3><span data-en>Start in a minute with templates</span><span data-ko>실무 템플릿으로 1분 만에 시작</span></h3>
+      <p><span data-en>Ready-made templates like a cash book — pick one and start right away.</span><span data-ko>현금출납부 등 바로 쓰는 실무 템플릿으로 즉시 시작하세요.</span></p>
+    </div>
+    <img src="images/01-templates.png" alt="Templates gallery" loading="lazy" />
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3><span data-en>Build your own table</span><span data-ko>나만의 표를 자유롭게</span></h3>
+      <p><span data-en>Number, text, date, formula and reference fields — as free as a spreadsheet, but smarter. Even bankbook-style running balances.</span><span data-ko>숫자·텍스트·날짜·수식·참조 항목을 엑셀처럼 자유롭게, 그러나 더 똑똑하게. 통장형 누적 잔액 항목까지.</span></p>
+    </div>
+    <img src="images/02-table.png" alt="Dynamic table" loading="lazy" />
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3><span data-en>Your home dashboard at a glance</span><span data-ko>한눈에 보는 홈 대시보드</span></h3>
+      <p><span data-en>See your menus and key numbers the moment you open the app.</span><span data-ko>앱을 열면 메뉴와 핵심 숫자가 한눈에 보입니다.</span></p>
+    </div>
+    <img src="images/03-home.png" alt="Home dashboard" loading="lazy" />
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3><span data-en>One click — automatic analysis</span><span data-ko>버튼 한 번, 자동 분석</span></h3>
+      <p><span data-en>Turn your data into charts, summaries and insights instantly.</span><span data-ko>입력한 데이터가 즉시 차트·요약·인사이트로 바뀝니다.</span></p>
+    </div>
+    <img src="images/04-smart-analysis.png" alt="Smart analysis" loading="lazy" />
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3><span data-en>Dates become a calendar</span><span data-ko>날짜 데이터가 달력으로</span></h3>
+      <p><span data-en>Date fields, memos and personal schedules together in one view.</span><span data-ko>날짜 항목·메모·개인 일정을 한 화면에서.</span></p>
+    </div>
+    <img src="images/05-calendar.png" alt="Calendar" loading="lazy" />
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3><span data-en>See how your data connects</span><span data-ko>데이터 연결 관계 한눈에</span></h3>
+      <p><span data-en>A relationship graph shows how your menus reference each other.</span><span data-ko>메뉴들이 서로 어떻게 참조되는지 그래프로 보여줍니다.</span></p>
+    </div>
+    <img src="images/06-relations.png" alt="Relationship view" loading="lazy" />
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3><span data-en>Easy on the eyes — light & dark</span><span data-ko>눈이 편한 라이트·다크 모드</span></h3>
+      <p><span data-en>A clean, modern interface in both light and dark themes.</span><span data-ko>라이트·다크 양쪽 모두 깔끔하고 현대적인 화면.</span></p>
+    </div>
+    <img src="images/07-dark-table.png" alt="Dark mode" loading="lazy" />
+  </div>
+
+  <!-- FEATURE GRID -->
+  <section class="block">
+    <h2><span data-en>Everything you need</span><span data-ko>필요한 기능 전부</span></h2>
+    <div class="grid">
+      <div class="feat"><b><span data-en>Dynamic tables</span><span data-ko>동적 표</span></b><span data-en>Number, text, date, formula and reference fields.</span><span data-ko>숫자·텍스트·날짜·수식·참조 항목 자유 구성.</span></div>
+      <div class="feat"><b><span data-en>Linked menus & rollups</span><span data-ko>메뉴 연결 · 집계</span></b><span data-en>Reference other menus, with sum/count rollups.</span><span data-ko>다른 메뉴를 참조하고 합계·개수를 자동 집계.</span></div>
+      <div class="feat"><b><span data-en>Running balances</span><span data-ko>누적 잔액</span></b><span data-en>Bankbook-style cumulative balance fields.</span><span data-ko>통장처럼 잔액이 누적되는 항목.</span></div>
+      <div class="feat"><b><span data-en>Smart analysis</span><span data-ko>스마트 분석</span></b><span data-en>Automatic charts, summaries and insights.</span><span data-ko>자동 차트·요약·인사이트.</span></div>
+      <div class="feat"><b><span data-en>Calendar</span><span data-ko>달력</span></b><span data-en>Dates, memos and schedules in one place.</span><span data-ko>날짜·메모·일정을 한 화면에.</span></div>
+      <div class="feat"><b><span data-en>Relationship graph</span><span data-ko>관계 그래프</span></b><span data-en>Visualize how your data connects.</span><span data-ko>데이터 연결을 시각화.</span></div>
+      <div class="feat"><b><span data-en>Backup & restore</span><span data-ko>백업 · 복원</span></b><span data-en>One encrypted file restores on any PC.</span><span data-ko>암호화 파일 1개로 다른 PC에서도 복원.</span></div>
+      <div class="feat"><b><span data-en>Excel & collaboration</span><span data-ko>엑셀 · 협업</span></b><span data-en>Import/export Excel, compare & merge.</span><span data-ko>엑셀 가져오기·내보내기, 비교 병합.</span></div>
+      <div class="feat"><b><span data-en>Automation & PDF</span><span data-ko>자동화 · PDF</span></b><span data-en>Rules + notifications, PDF report export.</span><span data-ko>자동화 규칙·알림, PDF 리포트 내보내기.</span></div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="block">
+    <h2><span data-en>Why SeshatX</span><span data-ko>왜 SeshatX인가</span></h2>
+    <div class="pillars">
+      <div class="pillar"><div class="big">🔒</div><b><span data-en>Offline</span><span data-ko>오프라인</span></b><span data-en>Works without internet. No data-leak worries.</span><span data-ko>인터넷 없이 동작. 데이터 유출 걱정 없음.</span></div>
+      <div class="pillar"><div class="big">♾️</div><b><span data-en>No subscription</span><span data-ko>구독 없음</span></b><span data-en>Install once, keep using.</span><span data-ko>한 번 설치로 계속 사용.</span></div>
+      <div class="pillar"><div class="big">💾</div><b><span data-en>You own your data</span><span data-ko>내 데이터 소유</span></b><span data-en>Never held hostage in the cloud.</span><span data-ko>클라우드에 인질로 잡히지 않음.</span></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>
+      <a href="https://seshatx-app.github.io/privacy/"><span data-en>Privacy Policy</span><span data-ko>개인정보처리방침</span></a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/SeshatX-app/support"><span data-en>Support</span><span data-ko>지원 / 문의</span></a>
+    </p>
+    <p>© 2026 SeshatX. <span data-en>All your data is stored locally on your device.</span><span data-ko>모든 데이터는 사용자 기기에만 저장됩니다.</span></p>
+  </div>
+</footer>
+
+<script>
+  function setLang(l){
+    document.documentElement.setAttribute('data-lang', l);
+    document.documentElement.setAttribute('lang', l);
+    document.getElementById('btn-en').classList.toggle('active', l==='en');
+    document.getElementById('btn-ko').classList.toggle('active', l==='ko');
+    try{ localStorage.setItem('seshatx_lang', l); }catch(e){}
+  }
+  // default: saved choice → browser language → en
+  (function(){
+    var saved; try{ saved = localStorage.getItem('seshatx_lang'); }catch(e){}
+    var lang = saved || ((navigator.language||'').slice(0,2)==='ko' ? 'ko' : 'en');
+    setLang(lang);
+  })();
+</script>
+</body>
+</html>
