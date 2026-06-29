@@ -18,6 +18,11 @@
 <meta property="og:image" content="https://seshatx-app.github.io/images/03-home.png" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:locale:alternate" content="ko_KR" />
+<meta property="og:locale:alternate" content="ja_JP" />
+<meta property="og:locale:alternate" content="de_DE" />
+<meta property="og:locale:alternate" content="fr_FR" />
+<meta property="og:locale:alternate" content="es_ES" />
+<meta property="og:locale:alternate" content="pt_BR" />
 
 <!-- Twitter card -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -66,9 +71,12 @@
   header.top .row{ display:flex; align-items:center; justify-content:space-between; height:60px; }
   .brand{ display:flex; align-items:center; gap:10px; font-weight:800; font-size:18px; letter-spacing:-.01em; }
   .brand svg{ width:26px; height:26px; color:var(--primary); }
-  .toggle{ display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
-  .toggle button{ border:0; background:transparent; color:var(--muted); padding:6px 14px; font-size:13px; cursor:pointer; font-weight:600; }
-  .toggle button.active{ background:var(--primary); color:var(--primary-fg); }
+  .langsel{ display:inline-flex; align-items:center; gap:6px; }
+  .langsel svg{ width:16px; height:16px; color:var(--muted); }
+  select#lang{ appearance:none; -webkit-appearance:none; background:var(--card); color:var(--fg);
+    border:1px solid var(--line); border-radius:999px; padding:7px 30px 7px 12px; font-size:13px; font-weight:600;
+    cursor:pointer; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");
+    background-repeat:no-repeat; background-position:right 10px center; }
 
   /* hero */
   .hero{ text-align:center; padding:72px 0 40px; }
@@ -97,7 +105,6 @@
   .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
   @media (max-width:760px){ .grid{ grid-template-columns:1fr; } }
   .feat{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 18px; }
-  .feat .ic{ width:34px; height:34px; color:var(--primary); margin-bottom:10px; }
   .feat b{ display:block; margin-bottom:4px; }
   .feat span{ color:var(--muted); font-size:14px; }
 
@@ -111,10 +118,6 @@
 
   footer{ border-top:1px solid var(--line); padding:36px 0 60px; text-align:center; color:var(--muted); font-size:14px; }
   footer a{ color:var(--primary); text-decoration:none; }
-
-  [data-ko]{ display:none; }
-  html[data-lang="ko"] [data-en]{ display:none; }
-  html[data-lang="ko"] [data-ko]{ display:revert; }
 </style>
 </head>
 <body>
@@ -129,9 +132,17 @@
       </svg>
       <span>SeshatX</span>
     </div>
-    <div class="toggle" role="group" aria-label="Language">
-      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
-      <button id="btn-ko" onclick="setLang('ko')">한국어</button>
+    <div class="langsel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg>
+      <select id="lang" aria-label="Language" onchange="setLang(this.value)">
+        <option value="en">English</option>
+        <option value="ko">한국어</option>
+        <option value="ja">日本語</option>
+        <option value="de">Deutsch</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="pt">Português</option>
+      </select>
     </div>
   </div>
 </header>
@@ -140,111 +151,101 @@
 
   <!-- HERO -->
   <div class="hero">
-    <h1>
-      <span data-en>Your data stays on your PC.</span>
-      <span data-ko>내 데이터는 내 PC에만 있습니다.</span>
-    </h1>
-    <p class="sub">
-      <span data-en>SeshatX is an offline, subscription-free data manager — easier than spreadsheets, with dynamic tables, automatic analysis, calendar and backups. No cloud. No login.</span>
-      <span data-ko>SeshatX는 오프라인·구독 없는 데이터 관리 앱입니다. 엑셀보다 쉬운 동적 표, 자동 분석, 달력, 백업까지 — 클라우드도, 로그인도 없습니다.</span>
-    </p>
+    <h1 data-i18n="hero_h1">Your data stays on your PC.</h1>
+    <p class="sub" data-i18n="hero_sub">SeshatX is an offline, subscription-free data manager — easier than spreadsheets, with dynamic tables, automatic analysis, calendar and backups. No cloud. No login.</p>
     <a class="cta" href="MS_STORE_URL_HERE" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h8v8H3zM13 3h8v8h-8zM3 13h8v8H3zM13 13h8v8h-8z"/></svg>
-      <span data-en>Get it on Microsoft Store</span>
-      <span data-ko>Microsoft Store에서 받기</span>
+      <span data-i18n="cta">Get it on Microsoft Store</span>
     </a>
-    <p class="note">
-      <span data-en>Windows 10 / 11 · one-time purchase · 7-day free trial</span>
-      <span data-ko>Windows 10 / 11 · 1회 구매 · 7일 무료 체험</span>
-    </p>
+    <p class="note" data-i18n="note">Windows 10 / 11 · one-time purchase · 7-day free trial</p>
     <div class="badges">
-      <span class="badge" data-en>🔒 Fully offline</span><span class="badge" data-ko>🔒 완전 오프라인</span>
-      <span class="badge" data-en>🚫 No subscription</span><span class="badge" data-ko>🚫 구독 없음</span>
-      <span class="badge" data-en>💾 You own your data</span><span class="badge" data-ko>💾 내 데이터는 내 소유</span>
-      <span class="badge" data-en>🌐 7 languages</span><span class="badge" data-ko>🌐 7개 언어</span>
+      <span class="badge" data-i18n="badge_offline">🔒 Fully offline</span>
+      <span class="badge" data-i18n="badge_nosub">🚫 No subscription</span>
+      <span class="badge" data-i18n="badge_own">💾 You own your data</span>
+      <span class="badge" data-i18n="badge_langs">🌐 7 languages</span>
     </div>
   </div>
 
   <!-- SHOWCASE -->
   <div class="shot">
     <div class="txt">
-      <h3><span data-en>Start in a minute with templates</span><span data-ko>실무 템플릿으로 1분 만에 시작</span></h3>
-      <p><span data-en>Ready-made templates like a cash book — pick one and start right away.</span><span data-ko>현금출납부 등 바로 쓰는 실무 템플릿으로 즉시 시작하세요.</span></p>
+      <h3 data-i18n="s1_t">Start in a minute with templates</h3>
+      <p data-i18n="s1_d">Ready-made templates like a cash book — pick one and start right away.</p>
     </div>
     <img src="images/01-templates.png" alt="Templates gallery" loading="lazy" />
   </div>
 
   <div class="shot">
     <div class="txt">
-      <h3><span data-en>Build your own table</span><span data-ko>나만의 표를 자유롭게</span></h3>
-      <p><span data-en>Number, text, date, formula and reference fields — as free as a spreadsheet, but smarter. Even bankbook-style running balances.</span><span data-ko>숫자·텍스트·날짜·수식·참조 항목을 엑셀처럼 자유롭게, 그러나 더 똑똑하게. 통장형 누적 잔액 항목까지.</span></p>
+      <h3 data-i18n="s2_t">Build your own table</h3>
+      <p data-i18n="s2_d">Number, text, date, formula and reference fields — as free as a spreadsheet, but smarter. Even bankbook-style running balances.</p>
     </div>
     <img src="images/02-table.png" alt="Dynamic table" loading="lazy" />
   </div>
 
   <div class="shot">
     <div class="txt">
-      <h3><span data-en>Your home dashboard at a glance</span><span data-ko>한눈에 보는 홈 대시보드</span></h3>
-      <p><span data-en>See your menus and key numbers the moment you open the app.</span><span data-ko>앱을 열면 메뉴와 핵심 숫자가 한눈에 보입니다.</span></p>
+      <h3 data-i18n="s3_t">Your home dashboard at a glance</h3>
+      <p data-i18n="s3_d">See your menus and key numbers the moment you open the app.</p>
     </div>
     <img src="images/03-home.png" alt="Home dashboard" loading="lazy" />
   </div>
 
   <div class="shot">
     <div class="txt">
-      <h3><span data-en>One click — automatic analysis</span><span data-ko>버튼 한 번, 자동 분석</span></h3>
-      <p><span data-en>Turn your data into charts, summaries and insights instantly.</span><span data-ko>입력한 데이터가 즉시 차트·요약·인사이트로 바뀝니다.</span></p>
+      <h3 data-i18n="s4_t">One click — automatic analysis</h3>
+      <p data-i18n="s4_d">Turn your data into charts, summaries and insights instantly.</p>
     </div>
     <img src="images/04-smart-analysis.png" alt="Smart analysis" loading="lazy" />
   </div>
 
   <div class="shot">
     <div class="txt">
-      <h3><span data-en>Dates become a calendar</span><span data-ko>날짜 데이터가 달력으로</span></h3>
-      <p><span data-en>Date fields, memos and personal schedules together in one view.</span><span data-ko>날짜 항목·메모·개인 일정을 한 화면에서.</span></p>
+      <h3 data-i18n="s5_t">Dates become a calendar</h3>
+      <p data-i18n="s5_d">Date fields, memos and personal schedules together in one view.</p>
     </div>
     <img src="images/05-calendar.png" alt="Calendar" loading="lazy" />
   </div>
 
   <div class="shot">
     <div class="txt">
-      <h3><span data-en>See how your data connects</span><span data-ko>데이터 연결 관계 한눈에</span></h3>
-      <p><span data-en>A relationship graph shows how your menus reference each other.</span><span data-ko>메뉴들이 서로 어떻게 참조되는지 그래프로 보여줍니다.</span></p>
+      <h3 data-i18n="s6_t">See how your data connects</h3>
+      <p data-i18n="s6_d">A relationship graph shows how your menus reference each other.</p>
     </div>
     <img src="images/06-relations.png" alt="Relationship view" loading="lazy" />
   </div>
 
   <div class="shot">
     <div class="txt">
-      <h3><span data-en>Easy on the eyes — light & dark</span><span data-ko>눈이 편한 라이트·다크 모드</span></h3>
-      <p><span data-en>A clean, modern interface in both light and dark themes.</span><span data-ko>라이트·다크 양쪽 모두 깔끔하고 현대적인 화면.</span></p>
+      <h3 data-i18n="s7_t">Easy on the eyes — light & dark</h3>
+      <p data-i18n="s7_d">A clean, modern interface in both light and dark themes.</p>
     </div>
     <img src="images/07-dark-table.png" alt="Dark mode" loading="lazy" />
   </div>
 
   <!-- FEATURE GRID -->
   <section class="block">
-    <h2><span data-en>Everything you need</span><span data-ko>필요한 기능 전부</span></h2>
+    <h2 data-i18n="feat_head">Everything you need</h2>
     <div class="grid">
-      <div class="feat"><b><span data-en>Dynamic tables</span><span data-ko>동적 표</span></b><span data-en>Number, text, date, formula and reference fields.</span><span data-ko>숫자·텍스트·날짜·수식·참조 항목 자유 구성.</span></div>
-      <div class="feat"><b><span data-en>Linked menus & rollups</span><span data-ko>메뉴 연결 · 집계</span></b><span data-en>Reference other menus, with sum/count rollups.</span><span data-ko>다른 메뉴를 참조하고 합계·개수를 자동 집계.</span></div>
-      <div class="feat"><b><span data-en>Running balances</span><span data-ko>누적 잔액</span></b><span data-en>Bankbook-style cumulative balance fields.</span><span data-ko>통장처럼 잔액이 누적되는 항목.</span></div>
-      <div class="feat"><b><span data-en>Smart analysis</span><span data-ko>스마트 분석</span></b><span data-en>Automatic charts, summaries and insights.</span><span data-ko>자동 차트·요약·인사이트.</span></div>
-      <div class="feat"><b><span data-en>Calendar</span><span data-ko>달력</span></b><span data-en>Dates, memos and schedules in one place.</span><span data-ko>날짜·메모·일정을 한 화면에.</span></div>
-      <div class="feat"><b><span data-en>Relationship graph</span><span data-ko>관계 그래프</span></b><span data-en>Visualize how your data connects.</span><span data-ko>데이터 연결을 시각화.</span></div>
-      <div class="feat"><b><span data-en>Backup & restore</span><span data-ko>백업 · 복원</span></b><span data-en>One encrypted file restores on any PC.</span><span data-ko>암호화 파일 1개로 다른 PC에서도 복원.</span></div>
-      <div class="feat"><b><span data-en>Excel & collaboration</span><span data-ko>엑셀 · 협업</span></b><span data-en>Import/export Excel, compare & merge.</span><span data-ko>엑셀 가져오기·내보내기, 비교 병합.</span></div>
-      <div class="feat"><b><span data-en>Automation & PDF</span><span data-ko>자동화 · PDF</span></b><span data-en>Rules + notifications, PDF report export.</span><span data-ko>자동화 규칙·알림, PDF 리포트 내보내기.</span></div>
+      <div class="feat"><b data-i18n="f1_t">Dynamic tables</b><span data-i18n="f1_d">Number, text, date, formula and reference fields.</span></div>
+      <div class="feat"><b data-i18n="f2_t">Linked menus &amp; rollups</b><span data-i18n="f2_d">Reference other menus, with sum/count rollups.</span></div>
+      <div class="feat"><b data-i18n="f3_t">Running balances</b><span data-i18n="f3_d">Bankbook-style cumulative balance fields.</span></div>
+      <div class="feat"><b data-i18n="f4_t">Smart analysis</b><span data-i18n="f4_d">Automatic charts, summaries and insights.</span></div>
+      <div class="feat"><b data-i18n="f5_t">Calendar</b><span data-i18n="f5_d">Dates, memos and schedules in one place.</span></div>
+      <div class="feat"><b data-i18n="f6_t">Relationship graph</b><span data-i18n="f6_d">Visualize how your data connects.</span></div>
+      <div class="feat"><b data-i18n="f7_t">Backup &amp; restore</b><span data-i18n="f7_d">One encrypted file restores on any PC.</span></div>
+      <div class="feat"><b data-i18n="f8_t">Excel &amp; collaboration</b><span data-i18n="f8_d">Import/export Excel, compare &amp; merge.</span></div>
+      <div class="feat"><b data-i18n="f9_t">Automation &amp; PDF</b><span data-i18n="f9_d">Rules + notifications, PDF report export.</span></div>
     </div>
   </section>
 
   <!-- PILLARS -->
   <section class="block">
-    <h2><span data-en>Why SeshatX</span><span data-ko>왜 SeshatX인가</span></h2>
+    <h2 data-i18n="why_head">Why SeshatX</h2>
     <div class="pillars">
-      <div class="pillar"><div class="big">🔒</div><b><span data-en>Offline</span><span data-ko>오프라인</span></b><span data-en>Works without internet. No data-leak worries.</span><span data-ko>인터넷 없이 동작. 데이터 유출 걱정 없음.</span></div>
-      <div class="pillar"><div class="big">♾️</div><b><span data-en>No subscription</span><span data-ko>구독 없음</span></b><span data-en>Install once, keep using.</span><span data-ko>한 번 설치로 계속 사용.</span></div>
-      <div class="pillar"><div class="big">💾</div><b><span data-en>You own your data</span><span data-ko>내 데이터 소유</span></b><span data-en>Never held hostage in the cloud.</span><span data-ko>클라우드에 인질로 잡히지 않음.</span></div>
+      <div class="pillar"><div class="big">🔒</div><b data-i18n="p1_t">Offline</b><span data-i18n="p1_d">Works without internet. No data-leak worries.</span></div>
+      <div class="pillar"><div class="big">♾️</div><b data-i18n="p2_t">No subscription</b><span data-i18n="p2_d">Install once, keep using.</span></div>
+      <div class="pillar"><div class="big">💾</div><b data-i18n="p3_t">You own your data</b><span data-i18n="p3_d">Never held hostage in the cloud.</span></div>
     </div>
   </section>
 
@@ -253,26 +254,67 @@
 <footer>
   <div class="wrap">
     <p>
-      <a href="https://seshatx-app.github.io/privacy/"><span data-en>Privacy Policy</span><span data-ko>개인정보처리방침</span></a>
+      <a href="https://seshatx-app.github.io/privacy/" data-i18n="privacy">Privacy Policy</a>
       &nbsp;·&nbsp;
-      <a href="https://github.com/SeshatX-app/support"><span data-en>Support</span><span data-ko>지원 / 문의</span></a>
+      <a href="https://github.com/SeshatX-app/support" data-i18n="support">Support</a>
     </p>
-    <p>© 2026 SeshatX. <span data-en>All your data is stored locally on your device.</span><span data-ko>모든 데이터는 사용자 기기에만 저장됩니다.</span></p>
+    <p>© 2026 SeshatX. <span data-i18n="foot_local">All your data is stored locally on your device.</span></p>
   </div>
 </footer>
 
 <script>
+  const I18N = {
+    en:{ hero_h1:"Your data stays on your PC.", hero_sub:"SeshatX is an offline, subscription-free data manager — easier than spreadsheets, with dynamic tables, automatic analysis, calendar and backups. No cloud. No login.", cta:"Get it on Microsoft Store", note:"Windows 10 / 11 · one-time purchase · 7-day free trial", badge_offline:"🔒 Fully offline", badge_nosub:"🚫 No subscription", badge_own:"💾 You own your data", badge_langs:"🌐 7 languages",
+      s1_t:"Start in a minute with templates", s1_d:"Ready-made templates like a cash book — pick one and start right away.", s2_t:"Build your own table", s2_d:"Number, text, date, formula and reference fields — as free as a spreadsheet, but smarter. Even bankbook-style running balances.", s3_t:"Your home dashboard at a glance", s3_d:"See your menus and key numbers the moment you open the app.", s4_t:"One click — automatic analysis", s4_d:"Turn your data into charts, summaries and insights instantly.", s5_t:"Dates become a calendar", s5_d:"Date fields, memos and personal schedules together in one view.", s6_t:"See how your data connects", s6_d:"A relationship graph shows how your menus reference each other.", s7_t:"Easy on the eyes — light & dark", s7_d:"A clean, modern interface in both light and dark themes.",
+      feat_head:"Everything you need", f1_t:"Dynamic tables", f1_d:"Number, text, date, formula and reference fields.", f2_t:"Linked menus & rollups", f2_d:"Reference other menus, with sum/count rollups.", f3_t:"Running balances", f3_d:"Bankbook-style cumulative balance fields.", f4_t:"Smart analysis", f4_d:"Automatic charts, summaries and insights.", f5_t:"Calendar", f5_d:"Dates, memos and schedules in one place.", f6_t:"Relationship graph", f6_d:"Visualize how your data connects.", f7_t:"Backup & restore", f7_d:"One encrypted file restores on any PC.", f8_t:"Excel & collaboration", f8_d:"Import/export Excel, compare & merge.", f9_t:"Automation & PDF", f9_d:"Rules + notifications, PDF report export.",
+      why_head:"Why SeshatX", p1_t:"Offline", p1_d:"Works without internet. No data-leak worries.", p2_t:"No subscription", p2_d:"Install once, keep using.", p3_t:"You own your data", p3_d:"Never held hostage in the cloud.", foot_local:"All your data is stored locally on your device.", privacy:"Privacy Policy", support:"Support" },
+
+    ko:{ hero_h1:"내 데이터는 내 PC에만 있습니다.", hero_sub:"SeshatX는 오프라인·구독 없는 데이터 관리 앱입니다. 엑셀보다 쉬운 동적 표, 자동 분석, 달력, 백업까지 — 클라우드도, 로그인도 없습니다.", cta:"Microsoft Store에서 받기", note:"Windows 10 / 11 · 1회 구매 · 7일 무료 체험", badge_offline:"🔒 완전 오프라인", badge_nosub:"🚫 구독 없음", badge_own:"💾 내 데이터는 내 소유", badge_langs:"🌐 7개 언어",
+      s1_t:"실무 템플릿으로 1분 만에 시작", s1_d:"현금출납부 등 바로 쓰는 실무 템플릿으로 즉시 시작하세요.", s2_t:"나만의 표를 자유롭게", s2_d:"숫자·텍스트·날짜·수식·참조 항목을 엑셀처럼 자유롭게, 그러나 더 똑똑하게. 통장형 누적 잔액 항목까지.", s3_t:"한눈에 보는 홈 대시보드", s3_d:"앱을 열면 메뉴와 핵심 숫자가 한눈에 보입니다.", s4_t:"버튼 한 번, 자동 분석", s4_d:"입력한 데이터가 즉시 차트·요약·인사이트로 바뀝니다.", s5_t:"날짜 데이터가 달력으로", s5_d:"날짜 항목·메모·개인 일정을 한 화면에서.", s6_t:"데이터 연결 관계 한눈에", s6_d:"메뉴들이 서로 어떻게 참조되는지 그래프로 보여줍니다.", s7_t:"눈이 편한 라이트·다크 모드", s7_d:"라이트·다크 양쪽 모두 깔끔하고 현대적인 화면.",
+      feat_head:"필요한 기능 전부", f1_t:"동적 표", f1_d:"숫자·텍스트·날짜·수식·참조 항목 자유 구성.", f2_t:"메뉴 연결 · 집계", f2_d:"다른 메뉴를 참조하고 합계·개수를 자동 집계.", f3_t:"누적 잔액", f3_d:"통장처럼 잔액이 누적되는 항목.", f4_t:"스마트 분석", f4_d:"자동 차트·요약·인사이트.", f5_t:"달력", f5_d:"날짜·메모·일정을 한 화면에.", f6_t:"관계 그래프", f6_d:"데이터 연결을 시각화.", f7_t:"백업 · 복원", f7_d:"암호화 파일 1개로 다른 PC에서도 복원.", f8_t:"엑셀 · 협업", f8_d:"엑셀 가져오기·내보내기, 비교 병합.", f9_t:"자동화 · PDF", f9_d:"자동화 규칙·알림, PDF 리포트 내보내기.",
+      why_head:"왜 SeshatX인가", p1_t:"오프라인", p1_d:"인터넷 없이 동작. 데이터 유출 걱정 없음.", p2_t:"구독 없음", p2_d:"한 번 설치로 계속 사용.", p3_t:"내 데이터 소유", p3_d:"클라우드에 인질로 잡히지 않음.", foot_local:"모든 데이터는 사용자 기기에만 저장됩니다.", privacy:"개인정보처리방침", support:"지원 / 문의" },
+
+    ja:{ hero_h1:"あなたのデータは、あなたのPCの中だけに。", hero_sub:"SeshatXはオフラインで使えるサブスク不要のデータ管理アプリ。表計算より簡単な動的テーブル、自動分析、カレンダー、バックアップまで。クラウドもログインも不要です。", cta:"Microsoft Store で入手", note:"Windows 10 / 11 · 買い切り · 7日間無料体験", badge_offline:"🔒 完全オフライン", badge_nosub:"🚫 サブスク不要", badge_own:"💾 データは自分のもの", badge_langs:"🌐 7言語対応",
+      s1_t:"テンプレートで1分でスタート", s1_d:"現金出納帳などすぐ使える実務テンプレートで、その場で始められます。", s2_t:"自分だけの表を自由に", s2_d:"数値・テキスト・日付・数式・参照の項目を、表計算のように自由に、でももっと賢く。通帳型の繰越残高項目も。", s3_t:"ひと目でわかるホーム画面", s3_d:"アプリを開いた瞬間に、メニューと主要な数字がひと目で。", s4_t:"ワンクリックで自動分析", s4_d:"入力したデータが、すぐにグラフ・要約・インサイトに変わります。", s5_t:"日付データがカレンダーに", s5_d:"日付項目・メモ・個人予定を1つの画面にまとめて。", s6_t:"データのつながりがひと目で", s6_d:"メニュー同士がどう参照し合っているかをグラフで表示します。", s7_t:"目にやさしいライト/ダーク", s7_d:"ライトもダークも、すっきりとしたモダンな画面。",
+      feat_head:"必要な機能をすべて", f1_t:"動的テーブル", f1_d:"数値・テキスト・日付・数式・参照の項目。", f2_t:"メニュー連携・集計", f2_d:"他のメニューを参照し、合計・件数を自動集計。", f3_t:"繰越残高", f3_d:"通帳のように残高が繰り越される項目。", f4_t:"スマート分析", f4_d:"自動でグラフ・要約・インサイト。", f5_t:"カレンダー", f5_d:"日付・メモ・予定を1つの画面に。", f6_t:"関係グラフ", f6_d:"データのつながりを可視化。", f7_t:"バックアップ・復元", f7_d:"暗号化ファイル1つで別のPCでも復元。", f8_t:"Excel・共同作業", f8_d:"Excelの取り込み/書き出し、比較・統合。", f9_t:"自動化・PDF", f9_d:"ルール+通知、PDFレポート出力。",
+      why_head:"SeshatX が選ばれる理由", p1_t:"オフライン", p1_d:"インターネット不要。情報漏えいの心配なし。", p2_t:"サブスク不要", p2_d:"一度インストールすれば、ずっと使える。", p3_t:"データは自分のもの", p3_d:"クラウドに人質に取られない。", foot_local:"すべてのデータはお使いの端末内にのみ保存されます。", privacy:"プライバシーポリシー", support:"サポート" },
+
+    de:{ hero_h1:"Ihre Daten bleiben auf Ihrem PC.", hero_sub:"SeshatX ist ein offline nutzbarer, abofreier Datenmanager — einfacher als Tabellenkalkulationen, mit dynamischen Tabellen, automatischer Analyse, Kalender und Backups. Keine Cloud. Kein Login.", cta:"Im Microsoft Store holen", note:"Windows 10 / 11 · Einmalkauf · 7 Tage kostenlos testen", badge_offline:"🔒 Komplett offline", badge_nosub:"🚫 Kein Abo", badge_own:"💾 Ihre Daten gehören Ihnen", badge_langs:"🌐 7 Sprachen",
+      s1_t:"In einer Minute startklar mit Vorlagen", s1_d:"Fertige Vorlagen wie ein Kassenbuch — eine auswählen und sofort loslegen.", s2_t:"Bauen Sie Ihre eigene Tabelle", s2_d:"Zahlen-, Text-, Datums-, Formel- und Referenzfelder — so frei wie eine Tabellenkalkulation, aber schlauer. Sogar Salden im Kontobuch-Stil.", s3_t:"Ihr Dashboard auf einen Blick", s3_d:"Sehen Sie Ihre Menüs und wichtigsten Zahlen, sobald Sie die App öffnen.", s4_t:"Ein Klick — automatische Analyse", s4_d:"Verwandeln Sie Ihre Daten sofort in Diagramme, Zusammenfassungen und Erkenntnisse.", s5_t:"Aus Datumsangaben wird ein Kalender", s5_d:"Datumsfelder, Notizen und persönliche Termine in einer Ansicht.", s6_t:"Sehen Sie, wie Ihre Daten zusammenhängen", s6_d:"Ein Beziehungsdiagramm zeigt, wie Ihre Menüs aufeinander verweisen.", s7_t:"Augenfreundlich — hell & dunkel", s7_d:"Eine klare, moderne Oberfläche im hellen und dunklen Design.",
+      feat_head:"Alles, was Sie brauchen", f1_t:"Dynamische Tabellen", f1_d:"Zahlen-, Text-, Datums-, Formel- und Referenzfelder.", f2_t:"Verknüpfte Menüs & Rollups", f2_d:"Andere Menüs referenzieren, mit Summen/Anzahl-Rollups.", f3_t:"Laufende Salden", f3_d:"Kumulierte Saldofelder im Kontobuch-Stil.", f4_t:"Intelligente Analyse", f4_d:"Automatische Diagramme, Zusammenfassungen und Erkenntnisse.", f5_t:"Kalender", f5_d:"Daten, Notizen und Termine an einem Ort.", f6_t:"Beziehungsdiagramm", f6_d:"Visualisieren Sie, wie Ihre Daten zusammenhängen.", f7_t:"Backup & Wiederherstellung", f7_d:"Eine verschlüsselte Datei stellt auf jedem PC wieder her.", f8_t:"Excel & Zusammenarbeit", f8_d:"Excel-Import/-Export, vergleichen & zusammenführen.", f9_t:"Automatisierung & PDF", f9_d:"Regeln + Benachrichtigungen, PDF-Berichtsexport.",
+      why_head:"Warum SeshatX", p1_t:"Offline", p1_d:"Funktioniert ohne Internet. Keine Sorge um Datenlecks.", p2_t:"Kein Abo", p2_d:"Einmal installieren, dauerhaft nutzen.", p3_t:"Ihre Daten gehören Ihnen", p3_d:"Niemals in der Cloud als Geisel gehalten.", foot_local:"Alle Ihre Daten werden lokal auf Ihrem Gerät gespeichert.", privacy:"Datenschutzrichtlinie", support:"Support" },
+
+    fr:{ hero_h1:"Vos données restent sur votre PC.", hero_sub:"SeshatX est un gestionnaire de données hors ligne et sans abonnement — plus simple qu'un tableur, avec des tableaux dynamiques, une analyse automatique, un calendrier et des sauvegardes. Pas de cloud. Pas de connexion.", cta:"Obtenir sur le Microsoft Store", note:"Windows 10 / 11 · achat unique · essai gratuit de 7 jours", badge_offline:"🔒 100 % hors ligne", badge_nosub:"🚫 Sans abonnement", badge_own:"💾 Vos données vous appartiennent", badge_langs:"🌐 7 langues",
+      s1_t:"Démarrez en une minute avec des modèles", s1_d:"Des modèles prêts à l'emploi comme un livre de caisse — choisissez et commencez tout de suite.", s2_t:"Créez votre propre tableau", s2_d:"Champs nombre, texte, date, formule et référence — aussi libre qu'un tableur, mais plus intelligent. Même des soldes cumulés façon livret bancaire.", s3_t:"Votre tableau de bord en un coup d'œil", s3_d:"Voyez vos menus et vos chiffres clés dès l'ouverture de l'application.", s4_t:"Un clic — analyse automatique", s4_d:"Transformez vos données en graphiques, résumés et informations instantanément.", s5_t:"Les dates deviennent un calendrier", s5_d:"Champs de date, mémos et agendas personnels réunis dans une seule vue.", s6_t:"Voyez comment vos données sont liées", s6_d:"Un graphe de relations montre comment vos menus se référencent.", s7_t:"Agréable à l'œil — clair & sombre", s7_d:"Une interface claire et moderne, en thème clair comme sombre.",
+      feat_head:"Tout ce qu'il vous faut", f1_t:"Tableaux dynamiques", f1_d:"Champs nombre, texte, date, formule et référence.", f2_t:"Menus liés & cumuls", f2_d:"Référencez d'autres menus, avec cumuls somme/nombre.", f3_t:"Soldes cumulés", f3_d:"Champs de solde cumulé façon livret bancaire.", f4_t:"Analyse intelligente", f4_d:"Graphiques, résumés et informations automatiques.", f5_t:"Calendrier", f5_d:"Dates, mémos et agendas au même endroit.", f6_t:"Graphe de relations", f6_d:"Visualisez les liens entre vos données.", f7_t:"Sauvegarde & restauration", f7_d:"Un fichier chiffré se restaure sur n'importe quel PC.", f8_t:"Excel & collaboration", f8_d:"Import/export Excel, comparer & fusionner.", f9_t:"Automatisation & PDF", f9_d:"Règles + notifications, export de rapports PDF.",
+      why_head:"Pourquoi SeshatX", p1_t:"Hors ligne", p1_d:"Fonctionne sans internet. Aucun risque de fuite de données.", p2_t:"Sans abonnement", p2_d:"Installez une fois, utilisez toujours.", p3_t:"Vos données vous appartiennent", p3_d:"Jamais prises en otage dans le cloud.", foot_local:"Toutes vos données sont stockées localement sur votre appareil.", privacy:"Politique de confidentialité", support:"Assistance" },
+
+    es:{ hero_h1:"Tus datos se quedan en tu PC.", hero_sub:"SeshatX es un gestor de datos sin conexión y sin suscripción — más fácil que una hoja de cálculo, con tablas dinámicas, análisis automático, calendario y copias de seguridad. Sin nube. Sin inicio de sesión.", cta:"Conseguir en Microsoft Store", note:"Windows 10 / 11 · pago único · prueba gratis de 7 días", badge_offline:"🔒 Totalmente sin conexión", badge_nosub:"🚫 Sin suscripción", badge_own:"💾 Tus datos son tuyos", badge_langs:"🌐 7 idiomas",
+      s1_t:"Empieza en un minuto con plantillas", s1_d:"Plantillas listas como un libro de caja — elige una y empieza de inmediato.", s2_t:"Crea tu propia tabla", s2_d:"Campos de número, texto, fecha, fórmula y referencia — tan libre como una hoja de cálculo, pero más inteligente. Incluso saldos acumulados tipo libreta.", s3_t:"Tu panel de inicio de un vistazo", s3_d:"Ve tus menús y cifras clave nada más abrir la aplicación.", s4_t:"Un clic: análisis automático", s4_d:"Convierte tus datos en gráficos, resúmenes e información al instante.", s5_t:"Las fechas se vuelven un calendario", s5_d:"Campos de fecha, notas y agendas personales juntos en una vista.", s6_t:"Mira cómo se conectan tus datos", s6_d:"Un gráfico de relaciones muestra cómo se referencian tus menús.", s7_t:"Cómodo a la vista — claro y oscuro", s7_d:"Una interfaz limpia y moderna en tema claro y oscuro.",
+      feat_head:"Todo lo que necesitas", f1_t:"Tablas dinámicas", f1_d:"Campos de número, texto, fecha, fórmula y referencia.", f2_t:"Menús enlazados y totales", f2_d:"Referencia otros menús, con totales de suma/recuento.", f3_t:"Saldos acumulados", f3_d:"Campos de saldo acumulado tipo libreta.", f4_t:"Análisis inteligente", f4_d:"Gráficos, resúmenes e información automáticos.", f5_t:"Calendario", f5_d:"Fechas, notas y agendas en un solo lugar.", f6_t:"Gráfico de relaciones", f6_d:"Visualiza cómo se conectan tus datos.", f7_t:"Copia y restauración", f7_d:"Un archivo cifrado se restaura en cualquier PC.", f8_t:"Excel y colaboración", f8_d:"Importa/exporta Excel, compara y combina.", f9_t:"Automatización y PDF", f9_d:"Reglas + notificaciones, exportación de informes PDF.",
+      why_head:"Por qué SeshatX", p1_t:"Sin conexión", p1_d:"Funciona sin internet. Sin preocupaciones por fugas de datos.", p2_t:"Sin suscripción", p2_d:"Instala una vez y sigue usándolo.", p3_t:"Tus datos son tuyos", p3_d:"Nunca rehenes en la nube.", foot_local:"Todos tus datos se almacenan localmente en tu dispositivo.", privacy:"Política de privacidad", support:"Soporte" },
+
+    pt:{ hero_h1:"Seus dados ficam no seu PC.", hero_sub:"O SeshatX é um gerenciador de dados offline e sem assinatura — mais fácil que planilhas, com tabelas dinâmicas, análise automática, calendário e backups. Sem nuvem. Sem login.", cta:"Obter na Microsoft Store", note:"Windows 10 / 11 · compra única · teste grátis de 7 dias", badge_offline:"🔒 Totalmente offline", badge_nosub:"🚫 Sem assinatura", badge_own:"💾 Seus dados são seus", badge_langs:"🌐 7 idiomas",
+      s1_t:"Comece em um minuto com modelos", s1_d:"Modelos prontos como um livro-caixa — escolha um e comece na hora.", s2_t:"Monte sua própria tabela", s2_d:"Campos de número, texto, data, fórmula e referência — tão livre quanto uma planilha, mas mais inteligente. Até saldos acumulados estilo caderneta.", s3_t:"Seu painel inicial num relance", s3_d:"Veja seus menus e números principais assim que abrir o aplicativo.", s4_t:"Um clique — análise automática", s4_d:"Transforme seus dados em gráficos, resumos e insights instantaneamente.", s5_t:"Datas viram um calendário", s5_d:"Campos de data, memorandos e agendas pessoais juntos em uma vista.", s6_t:"Veja como seus dados se conectam", s6_d:"Um gráfico de relações mostra como seus menus se referenciam.", s7_t:"Suave aos olhos — claro e escuro", s7_d:"Uma interface limpa e moderna, nos temas claro e escuro.",
+      feat_head:"Tudo o que você precisa", f1_t:"Tabelas dinâmicas", f1_d:"Campos de número, texto, data, fórmula e referência.", f2_t:"Menus vinculados e totais", f2_d:"Referencie outros menus, com totais de soma/contagem.", f3_t:"Saldos acumulados", f3_d:"Campos de saldo acumulado estilo caderneta.", f4_t:"Análise inteligente", f4_d:"Gráficos, resumos e insights automáticos.", f5_t:"Calendário", f5_d:"Datas, memorandos e agendas em um só lugar.", f6_t:"Gráfico de relações", f6_d:"Visualize como seus dados se conectam.", f7_t:"Backup e restauração", f7_d:"Um arquivo criptografado restaura em qualquer PC.", f8_t:"Excel e colaboração", f8_d:"Importe/exporte Excel, compare e mescle.", f9_t:"Automação e PDF", f9_d:"Regras + notificações, exportação de relatórios PDF.",
+      why_head:"Por que SeshatX", p1_t:"Offline", p1_d:"Funciona sem internet. Sem preocupações com vazamento.", p2_t:"Sem assinatura", p2_d:"Instale uma vez e continue usando.", p3_t:"Seus dados são seus", p3_d:"Nunca reféns na nuvem.", foot_local:"Todos os seus dados são armazenados localmente no seu dispositivo.", privacy:"Política de Privacidade", support:"Suporte" }
+  };
+
   function setLang(l){
-    document.documentElement.setAttribute('data-lang', l);
+    const dict = I18N[l] || I18N.en;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      const k = el.getAttribute('data-i18n');
+      if(dict[k] != null) el.textContent = dict[k];
+    });
     document.documentElement.setAttribute('lang', l);
-    document.getElementById('btn-en').classList.toggle('active', l==='en');
-    document.getElementById('btn-ko').classList.toggle('active', l==='ko');
+    var sel = document.getElementById('lang'); if(sel) sel.value = l;
     try{ localStorage.setItem('seshatx_lang', l); }catch(e){}
   }
-  // default: saved choice → browser language → en
   (function(){
     var saved; try{ saved = localStorage.getItem('seshatx_lang'); }catch(e){}
-    var lang = saved || ((navigator.language||'').slice(0,2)==='ko' ? 'ko' : 'en');
+    var supported = ['en','ko','ja','de','fr','es','pt'];
+    var nav = (navigator.language||'').slice(0,2).toLowerCase();
+    var lang = saved || (supported.indexOf(nav) >= 0 ? nav : 'en');
     setLang(lang);
   })();
 </script>
