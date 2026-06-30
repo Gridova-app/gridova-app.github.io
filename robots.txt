@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://seshatx-app.github.io/sitemap.xml
+Sitemap: https://garowpad-app.github.io/sitemap.xml
