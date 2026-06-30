@@ -15,7 +15,7 @@
 <meta property="og:title" content="GarowPad — Your data stays on your PC" />
 <meta property="og:description" content="An offline, subscription-free data manager. Easier than spreadsheets — dynamic tables, auto analysis, calendar, backups. No cloud, no login." />
 <meta property="og:url" content="https://garowpad-app.github.io/" />
-<meta property="og:image" content="https://garowpad-app.github.io/images/03-home.png" />
+<meta property="og:image" content="https://garowpad-app.github.io/images/en/03-home.png" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:locale:alternate" content="ko_KR" />
 <meta property="og:locale:alternate" content="ja_JP" />
@@ -28,7 +28,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="GarowPad — Your data stays on your PC" />
 <meta name="twitter:description" content="Offline, subscription-free data manager for Windows. Dynamic tables, auto analysis, calendar, backups." />
-<meta name="twitter:image" content="https://garowpad-app.github.io/images/03-home.png" />
+<meta name="twitter:image" content="https://garowpad-app.github.io/images/en/03-home.png" />
 
 <!-- Structured data: helps Google show it as a software app -->
 <script type="application/ld+json">
@@ -172,7 +172,7 @@
       <h3 data-i18n="s1_t">Start in a minute with templates</h3>
       <p data-i18n="s1_d">Ready-made templates like a cash book — pick one and start right away.</p>
     </div>
-    <img src="images/01-templates.png" alt="Templates gallery" loading="lazy" />
+    <img data-shot="01-templates" src="images/en/01-templates.png" alt="Templates gallery" loading="lazy" />
   </div>
 
   <div class="shot">
@@ -180,7 +180,7 @@
       <h3 data-i18n="s2_t">Build your own table</h3>
       <p data-i18n="s2_d">Number, text, date, formula and reference fields — as free as a spreadsheet, but smarter. Even bankbook-style running balances.</p>
     </div>
-    <img src="images/02-table.png" alt="Dynamic table" loading="lazy" />
+    <img data-shot="02-table" src="images/en/02-table.png" alt="Dynamic table" loading="lazy" />
   </div>
 
   <div class="shot">
@@ -188,7 +188,7 @@
       <h3 data-i18n="s3_t">Your home dashboard at a glance</h3>
       <p data-i18n="s3_d">See your menus and key numbers the moment you open the app.</p>
     </div>
-    <img src="images/03-home.png" alt="Home dashboard" loading="lazy" />
+    <img data-shot="03-home" src="images/en/03-home.png" alt="Home dashboard" loading="lazy" />
   </div>
 
   <div class="shot">
@@ -196,7 +196,7 @@
       <h3 data-i18n="s4_t">One click — automatic analysis</h3>
       <p data-i18n="s4_d">Turn your data into charts, summaries and insights instantly.</p>
     </div>
-    <img src="images/04-smart-analysis.png" alt="Smart analysis" loading="lazy" />
+    <img data-shot="04-smart-analysis" src="images/en/04-smart-analysis.png" alt="Smart analysis" loading="lazy" />
   </div>
 
   <div class="shot">
@@ -204,7 +204,7 @@
       <h3 data-i18n="s5_t">Dates become a calendar</h3>
       <p data-i18n="s5_d">Date fields, memos and personal schedules together in one view.</p>
     </div>
-    <img src="images/05-calendar.png" alt="Calendar" loading="lazy" />
+    <img data-shot="05-calendar" src="images/en/05-calendar.png" alt="Calendar" loading="lazy" />
   </div>
 
   <div class="shot">
@@ -212,7 +212,7 @@
       <h3 data-i18n="s6_t">See how your data connects</h3>
       <p data-i18n="s6_d">A relationship graph shows how your menus reference each other.</p>
     </div>
-    <img src="images/06-relations.png" alt="Relationship view" loading="lazy" />
+    <img data-shot="06-relations" src="images/en/06-relations.png" alt="Relationship view" loading="lazy" />
   </div>
 
   <div class="shot">
@@ -220,7 +220,7 @@
       <h3 data-i18n="s7_t">Easy on the eyes — light & dark</h3>
       <p data-i18n="s7_d">A clean, modern interface in both light and dark themes.</p>
     </div>
-    <img src="images/07-dark-table.png" alt="Dark mode" loading="lazy" />
+    <img data-shot="07-dark-table" src="images/en/07-dark-table.png" alt="Dark mode" loading="lazy" />
   </div>
 
   <!-- FEATURE GRID -->
@@ -305,6 +305,12 @@
     document.querySelectorAll('[data-i18n]').forEach(function(el){
       const k = el.getAttribute('data-i18n');
       if(dict[k] != null) el.textContent = dict[k];
+    });
+    // 선택 언어의 캡쳐로 스크린샷 교체 (없으면 영어로 폴백)
+    document.querySelectorAll('img[data-shot]').forEach(function(img){
+      var shot = img.getAttribute('data-shot');
+      img.onerror = function(){ img.onerror = null; img.src = 'images/en/' + shot + '.png'; };
+      img.src = 'images/' + l + '/' + shot + '.png';
     });
     document.documentElement.setAttribute('lang', l);
     var sel = document.getElementById('lang'); if(sel) sel.value = l;
