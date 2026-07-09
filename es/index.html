@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gridova — Tus datos son tuyos. Sin suscripciones.</title>
+<meta name="description" content="La app de escritorio sin conexión que mantiene todo organizado y realmente tuyo. Todo en tu propio PC. Sin inicio de sesión, sin cuota mensual." />
+<meta name="keywords" content="data manager, offline app, no subscription, ledger, cash book, inventory, small business, Windows, 데이터 관리, 장부, 재고 관리, 오프라인, 구독 없음" />
+<link rel="canonical" href="https://gridova-app.github.io/es/" />
+<link rel="alternate" hreflang="en" href="https://gridova-app.github.io/" />
+<link rel="alternate" hreflang="ko" href="https://gridova-app.github.io/ko/" />
+<link rel="alternate" hreflang="ja" href="https://gridova-app.github.io/ja/" />
+<link rel="alternate" hreflang="de" href="https://gridova-app.github.io/de/" />
+<link rel="alternate" hreflang="fr" href="https://gridova-app.github.io/fr/" />
+<link rel="alternate" hreflang="es" href="https://gridova-app.github.io/es/" />
+<link rel="alternate" hreflang="pt" href="https://gridova-app.github.io/pt/" />
+<link rel="alternate" hreflang="x-default" href="https://gridova-app.github.io/" />
+<meta name="robots" content="index, follow" />
+
+<!-- Open Graph (link-share preview: KakaoTalk, Facebook, etc.) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Gridova" />
+<meta property="og:title" content="Gridova — Tus datos son tuyos. Sin suscripciones." />
+<meta property="og:description" content="La app de escritorio sin conexión que mantiene todo organizado y realmente tuyo. Todo en tu propio PC. Sin inicio de sesión, sin cuota mensual." />
+<meta property="og:url" content="https://gridova-app.github.io/es/" />
+<meta property="og:image" content="https://gridova-app.github.io/images/es/03-home.png" />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta property="og:locale:alternate" content="ko_KR" />
+<meta property="og:locale:alternate" content="ja_JP" />
+<meta property="og:locale:alternate" content="de_DE" />
+<meta property="og:locale:alternate" content="fr_FR" />
+<meta property="og:locale:alternate" content="pt_BR" />
+
+<!-- Twitter card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Gridova — Tus datos son tuyos. Sin suscripciones." />
+<meta name="twitter:description" content="La app de escritorio sin conexión que mantiene todo organizado y realmente tuyo. Todo en tu propio PC. Sin inicio de sesión, sin cuota mensual." />
+<meta name="twitter:image" content="https://gridova-app.github.io/images/es/03-home.png" />
+
+<!-- Structured data: helps Google show it as a software app -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Gridova",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Windows 10, Windows 11",
+  "description": "Gridova is a fully offline, subscription-free desktop data manager. Dynamic tables, automatic analysis, calendar, relationship view and encrypted backups — all your data stays on your own PC.",
+  "url": "https://gridova-app.github.io/es/",
+  "inLanguage": ["en", "ko", "ja", "de", "fr", "es", "pt"],
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "One-time purchase with a 7-day free trial"
+  }
+}
+</script>
+<style>
+  :root{
+    --bg:#ffffff; --fg:#0f172a; --muted:#64748b; --line:#e5e7eb;
+    --primary:#2563eb; --primary-fg:#ffffff; --card:#f8fafc; --shadow:0 8px 30px rgba(2,6,23,.08);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0b1120; --fg:#e2e8f0; --muted:#94a3b8; --line:#1e293b;
+           --primary:#3b82f6; --card:#0f172a; --shadow:0 8px 30px rgba(0,0,0,.4); }
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:var(--bg); color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans","Noto Sans KR","Noto Sans JP",Helvetica,Arial,sans-serif;
+    line-height:1.7; font-size:16px; -webkit-font-smoothing:antialiased; }
+  .wrap{ max-width:1040px; margin:0 auto; padding:0 20px; }
+
+  /* header */
+  header.top{ position:sticky; top:0; z-index:10; background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  header.top .row{ display:flex; align-items:center; justify-content:space-between; height:60px; }
+  .brand{ display:flex; align-items:center; gap:10px; font-weight:800; font-size:18px; letter-spacing:-.01em; }
+  .brand svg{ width:26px; height:26px; color:var(--primary); }
+  .langsel{ display:inline-flex; align-items:center; gap:6px; }
+  .langsel svg{ width:16px; height:16px; color:var(--muted); }
+  select#lang{ appearance:none; -webkit-appearance:none; background:var(--card); color:var(--fg);
+    border:1px solid var(--line); border-radius:999px; padding:7px 30px 7px 12px; font-size:13px; font-weight:600;
+    cursor:pointer; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");
+    background-repeat:no-repeat; background-position:right 10px center; }
+
+  /* hero */
+  .hero{ text-align:center; padding:72px 0 40px; }
+  .hero h1{ font-size:clamp(30px,5vw,48px); line-height:1.15; margin:0 0 16px; letter-spacing:-.02em; }
+  .hero p.sub{ font-size:clamp(16px,2.4vw,20px); color:var(--muted); max-width:700px; margin:0 auto 28px; }
+  .cta{ display:inline-flex; align-items:center; gap:10px; background:var(--primary); color:var(--primary-fg);
+    text-decoration:none; font-weight:700; padding:14px 24px; border-radius:12px; box-shadow:var(--shadow); }
+  .cta:hover{ filter:brightness(1.05); }
+  .cta svg{ width:20px; height:20px; }
+  .cta-row{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .cta2{ display:inline-flex; align-items:center; gap:9px; background:var(--card); color:var(--fg);
+    text-decoration:none; font-weight:700; padding:14px 22px; border-radius:12px; border:1px solid var(--line); }
+  .cta2:hover{ border-color:var(--primary); color:var(--primary); }
+  .cta2 svg{ width:20px; height:20px; }
+  .note{ font-size:13px; color:var(--muted); margin-top:12px; }
+  .badges{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:28px; }
+  .badge{ font-size:13px; color:var(--fg); background:var(--card); border:1px solid var(--line);
+    padding:7px 14px; border-radius:999px; }
+
+  /* showcase */
+  .shot{ display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:center; padding:44px 0; border-top:1px solid var(--line); }
+  .shot:nth-child(even) .txt{ order:2; }
+  .shot img{ width:100%; border-radius:12px; border:1px solid var(--line); box-shadow:var(--shadow); }
+  .shot h3{ font-size:22px; margin:0 0 8px; letter-spacing:-.01em; }
+  .shot p{ color:var(--muted); margin:0; }
+  @media (max-width:760px){ .shot{ grid-template-columns:1fr; gap:18px; } .shot:nth-child(even) .txt{ order:0; } }
+
+  /* features grid */
+  section.block{ padding:56px 0; border-top:1px solid var(--line); }
+  section.block h2{ text-align:center; font-size:28px; margin:0 0 12px; letter-spacing:-.01em; }
+  section.block p.lead{ text-align:center; color:var(--muted); max-width:600px; margin:0 auto 32px; }
+  .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:760px){ .grid{ grid-template-columns:1fr; } }
+  .feat{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 18px; }
+  .feat b{ display:block; margin-bottom:4px; }
+  .feat span{ color:var(--muted); font-size:14px; }
+
+  /* use cases */
+  .uc{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:760px){ .uc{ grid-template-columns:1fr; } }
+  .uccard{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:20px 18px; }
+  .uccard .ic{ font-size:26px; line-height:1; }
+  .uccard b{ display:block; margin:12px 0 4px; font-size:16px; }
+  .uccard span{ color:var(--muted); font-size:14px; }
+  .uccard.open{ border-style:dashed; border-color:var(--primary); }
+  .uccard.open b{ color:var(--primary); }
+
+  /* pillars */
+  .pillars{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media (max-width:760px){ .pillars{ grid-template-columns:1fr; } }
+  .pillar{ text-align:center; padding:8px; }
+  .pillar .big{ font-size:30px; }
+  .pillar b{ display:block; margin:8px 0 4px; font-size:18px; }
+  .pillar span{ color:var(--muted); font-size:14px; }
+
+  /* faq */
+  .faq{ max-width:780px; margin:0 auto; }
+  .faq details{ border:1px solid var(--line); border-radius:12px; padding:0 18px; margin-bottom:10px; background:var(--card); }
+  .faq summary{ cursor:pointer; font-weight:700; padding:16px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:14px; }
+  .faq summary::-webkit-details-marker{ display:none; }
+  .faq summary::after{ content:"+"; color:var(--primary); font-size:22px; line-height:1; }
+  .faq details[open] summary::after{ content:"\2212"; }
+  .faq details p{ margin:0 0 16px; color:var(--muted); }
+
+  /* final cta */
+  .final{ text-align:center; }
+  .final p.lead{ color:var(--muted); max-width:580px; margin:0 auto 24px; font-size:17px; }
+
+  footer{ border-top:1px solid var(--line); padding:36px 0 60px; text-align:center; color:var(--muted); font-size:14px; }
+  footer a{ color:var(--primary); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap row">
+    <div class="brand">
+      <!-- Gridova grid mark -->
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <g opacity="0.5">
+          <rect x="9.5" y="3" width="5" height="5" rx="1.3"/>
+          <rect x="16" y="3" width="5" height="5" rx="1.3"/>
+          <rect x="3" y="9.5" width="5" height="5" rx="1.3"/>
+          <rect x="9.5" y="9.5" width="5" height="5" rx="1.3"/>
+          <rect x="16" y="9.5" width="5" height="5" rx="1.3"/>
+          <rect x="3" y="16" width="5" height="5" rx="1.3"/>
+          <rect x="9.5" y="16" width="5" height="5" rx="1.3"/>
+          <rect x="16" y="16" width="5" height="5" rx="1.3"/>
+        </g>
+        <rect x="3" y="3" width="5" height="5" rx="1.3"/>
+      </svg>
+      <span>Gridova</span>
+    </div>
+    <div class="langsel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg>
+      <select id="lang" aria-label="Language" onchange="if(this.value)location.href=this.value;">
+        <option value="https://gridova-app.github.io/">English</option>
+        <option value="https://gridova-app.github.io/ko/">한국어</option>
+        <option value="https://gridova-app.github.io/ja/">日本語</option>
+        <option value="https://gridova-app.github.io/de/">Deutsch</option>
+        <option value="https://gridova-app.github.io/fr/">Français</option>
+        <option value="https://gridova-app.github.io/es/" selected>Español</option>
+        <option value="https://gridova-app.github.io/pt/">Português</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1 data-i18n="hero_h1">Tus datos son tuyos. Sin suscripciones.</h1>
+    <p class="sub" data-i18n="hero_sub">La app de escritorio sin conexión que mantiene todo organizado y realmente tuyo. Todo en tu propio PC. Sin inicio de sesión, sin cuota mensual.</p>
+    <div class="cta-row">
+      <a class="cta" href="https://apps.microsoft.com/detail/9PJ9CGVZB5NX" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h8v8H3zM13 3h8v8h-8zM3 13h8v8H3zM13 13h8v8h-8z"/></svg>
+        <span data-i18n="cta">Conseguir en Microsoft Store</span>
+      </a>
+      <a class="cta2" href="/demos.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
+        <span data-i18n="watch_demos">Ver los demos</span>
+      </a>
+    </div>
+    <p class="note" data-i18n="note">Windows 10 / 11 · pago único · prueba gratis de 7 días</p>
+    <div class="badges">
+      <span class="badge" data-i18n="badge_offline">🔒 Totalmente sin conexión</span>
+      <span class="badge" data-i18n="badge_nosub">🚫 Sin suscripción</span>
+      <span class="badge" data-i18n="badge_own">💾 Tus datos son tuyos</span>
+      <span class="badge" data-i18n="badge_langs">🌐 7 idiomas</span>
+    </div>
+  </div>
+
+  <!-- SHOWCASE -->
+  <div class="shot">
+    <div class="txt">
+      <h3 data-i18n="s1_t">Listo en un minuto</h3>
+      <p data-i18n="s1_d">Plantillas listas como un libro de caja — elige una y tus datos cobran vida en segundos. Sin el bloqueo de la página en blanco.</p>
+    </div>
+    <img data-shot="01-templates" src="/images/es/01-templates.png" onerror="this.onerror=null;this.src='/images/en/01-templates.png'" alt="Templates gallery" loading="lazy" />
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3 data-i18n="s2_t">Crea tu tabla exactamente como quieras</h3>
+      <p data-i18n="s2_d">Campos de número, texto, fecha, fórmula y referencia que tú defines. Enlaza menús y crea un saldo que se arrastra fila por fila — tan flexible como necesites.</p>
+    </div>
+    <img data-shot="02-table" src="/images/es/02-table.png" onerror="this.onerror=null;this.src='/images/en/02-table.png'" alt="Dynamic table" loading="lazy" />
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3 data-i18n="s3_t">Todo tu negocio de un vistazo</h3>
+      <p data-i18n="s3_d">Abre la app y tus menús, cifras clave y almacenamiento están ahí mismo, sin buscar.</p>
+    </div>
+    <img data-shot="03-home" src="/images/es/03-home.png" onerror="this.onerror=null;this.src='/images/en/03-home.png'" alt="Home dashboard" loading="lazy" />
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3 data-i18n="s4_t">Análisis en un clic — sin fórmulas</h3>
+      <p data-i18n="s4_d">Convierte tus filas en gráficos, resúmenes y tendencias al instante — sin configuración ni fórmulas.</p>
+    </div>
+    <img data-shot="04-smart-analysis" src="/images/es/04-smart-analysis.png" onerror="this.onerror=null;this.src='/images/en/04-smart-analysis.png'" alt="Smart analysis" loading="lazy" />
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3 data-i18n="s5_t">No vuelvas a olvidar una fecha</h3>
+      <p data-i18n="s5_d">Campos de fecha, notas y agendas personales se reúnen automáticamente en un solo calendario.</p>
+    </div>
+    <img data-shot="05-calendar" src="/images/es/05-calendar.png" onerror="this.onerror=null;this.src='/images/en/05-calendar.png'" alt="Calendar" loading="lazy" />
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3 data-i18n="s8_t">Alertas que vigilan tus datos</h3>
+      <p data-i18n="s8_d">Define una regla una vez — «cuando se acerque una fecha o un número supere un límite, avísame» — y Gridova te avisa automáticamente. Ya no dependes de tu memoria. Activa las notificaciones de Windows y aparecerán en el escritorio aunque la app esté minimizada.</p>
+    </div>
+    <img data-shot="08-automation" src="/images/es/08-automation.png" onerror="this.onerror=null;this.src='/images/en/08-automation.png'" alt="Automation rules and alerts" loading="lazy" />
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3 data-i18n="s6_t">Mira cómo se conecta todo</h3>
+      <p data-i18n="s6_d">Un gráfico de relaciones muestra cómo se referencian tus menús — claridad de un vistazo.</p>
+    </div>
+    <img data-shot="06-relations" src="/images/es/06-relations.png" onerror="this.onerror=null;this.src='/images/en/06-relations.png'" alt="Relationship view" loading="lazy" />
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3 data-i18n="s9_t">Trabajen juntos — sin pisarse</h3>
+      <p data-i18n="s9_d">Reparte un Excel, reúne los cambios de cada uno y combínalos en una sola pantalla. Donde los valores difieren, Gridova los muestra lado a lado para que elijas cuál conservar — nada se sobrescribe sin que lo veas. Totalmente sin conexión, sin cuenta compartida.</p>
+    </div>
+    <img data-shot="09-collab" src="/images/es/09-collab.png" onerror="this.onerror=null;this.src='/images/en/09-collab.png'" alt="Compare and merge collaborator edits" loading="lazy" />
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3 data-i18n="s7_t">Cómodo a la vista — claro y oscuro</h3>
+      <p data-i18n="s7_d">Una interfaz limpia y moderna que luce genial en tema claro y oscuro.</p>
+    </div>
+    <img data-shot="07-dark-table" src="/images/es/07-dark-table.png" onerror="this.onerror=null;this.src='/images/en/07-dark-table.png'" alt="Dark mode" loading="lazy" />
+  </div>
+
+  <!-- USE CASES -->
+  <section class="block">
+    <h2 data-i18n="uc_head">Lo que necesites tener bajo control</h2>
+    <p class="lead" data-i18n="uc_lead">Estos son solo ejemplos: Gridova es un lienzo en blanco. Si puedes ponerlo en una tabla, puedes gestionarlo aquí.</p>
+    <div class="uc">
+      <div class="uccard"><div class="ic">💰</div><b data-i18n="uc1_t">Libro de caja</b><span data-i18n="uc1_d">Ingresos y gastos — y un saldo corriente que se arrastra fila por fila.</span></div>
+      <div class="uccard"><div class="ic">📦</div><b data-i18n="uc2_t">Inventario</b><span data-i18n="uc2_d">Registra entradas y salidas, y ve la cantidad actual calculada por ti.</span></div>
+      <div class="uccard"><div class="ic">🤝</div><b data-i18n="uc3_t">Clientes y proveedores</b><span data-i18n="uc3_d">Contactos, notas e historial completo de transacciones, todo enlazado.</span></div>
+      <div class="uccard"><div class="ic">🧾</div><b data-i18n="uc4_t">Presupuestos y totales</b><span data-i18n="uc4_d">Cantidad × precio se calcula solo, sin cuentas a mano.</span></div>
+      <div class="uccard"><div class="ic">📅</div><b data-i18n="uc5_t">Reservas y agendas</b><span data-i18n="uc5_d">Introduce fechas y aparecen automáticamente en un calendario.</span></div>
+      <div class="uccard"><div class="ic">👥</div><b data-i18n="uc6_t">Miembros y personal</b><span data-i18n="uc6_d">Listas, cuotas, salarios y recordatorios, todo junto.</span></div>
+      <div class="uccard"><div class="ic">💳</div><b data-i18n="uc8_t">Cuentas por cobrar</b><span data-i18n="uc8_d">Ve quién debe qué de un vistazo — sin deudas olvidadas.</span></div>
+      <div class="uccard"><div class="ic">🏷️</div><b data-i18n="uc9_t">Productos y precios</b><span data-i18n="uc9_d">Tus productos, opciones y precios en una lista ordenada.</span></div>
+      <div class="uccard open"><div class="ic">✨</div><b data-i18n="uc7_t">…y cualquier otra cosa</b><span data-i18n="uc7_d">Crea tu propia tabla desde cero: Gridova se adapta a lo que sea.</span></div>
+    </div>
+  </section>
+
+  <!-- FEATURE GRID -->
+  <section class="block">
+    <h2 data-i18n="feat_head">Todo lo que necesitas</h2>
+    <div class="grid">
+      <div class="feat"><b data-i18n="f1_t">Tablas personalizables</b><span data-i18n="f1_d">Campos de número, texto, fecha, fórmula y referencia.</span></div>
+      <div class="feat"><b data-i18n="f2_t">Menús enlazados y totales</b><span data-i18n="f2_d">Referencia otros menús, con totales de suma/recuento.</span></div>
+      <div class="feat"><b data-i18n="f3_t">Saldos acumulados</b><span data-i18n="f3_d">Un campo de saldo corriente que se arrastra fila por fila.</span></div>
+      <div class="feat"><b data-i18n="f4_t">Análisis inteligente</b><span data-i18n="f4_d">Gráficos, resúmenes e información automáticos.</span></div>
+      <div class="feat"><b data-i18n="f5_t">Calendario</b><span data-i18n="f5_d">Fechas, notas y agendas en un solo lugar.</span></div>
+      <div class="feat"><b data-i18n="f6_t">Gráfico de relaciones</b><span data-i18n="f6_d">Visualiza cómo se conectan tus datos.</span></div>
+      <div class="feat"><b data-i18n="f7_t">Copia y restauración</b><span data-i18n="f7_d">Un archivo cifrado se restaura en cualquier PC.</span></div>
+      <div class="feat"><b data-i18n="f8_t">Excel y colaboración</b><span data-i18n="f8_d">Importa/exporta Excel, compara y combina.</span></div>
+      <div class="feat"><b data-i18n="f9_t">Automatización y PDF</b><span data-i18n="f9_d">Reglas + notificaciones, exportación de informes PDF.</span></div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="block">
+    <h2 data-i18n="why_head">Por qué Gridova</h2>
+    <div class="pillars">
+      <div class="pillar"><div class="big">🔒</div><b data-i18n="p1_t">Sin conexión</b><span data-i18n="p1_d">Funciona sin internet. Sin preocupaciones por fugas de datos.</span></div>
+      <div class="pillar"><div class="big">♾️</div><b data-i18n="p2_t">Sin suscripción</b><span data-i18n="p2_d">Instala una vez y sigue usándolo.</span></div>
+      <div class="pillar"><div class="big">💾</div><b data-i18n="p3_t">Tus datos son tuyos</b><span data-i18n="p3_d">Siempre en tus manos — para guardar, mover o respaldar cuando quieras.</span></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block">
+    <h2 data-i18n="faq_head">Preguntas frecuentes</h2>
+    <div class="faq">
+      <details>
+        <summary data-i18n="faq_q1">¿Tengo que pagar cada mes?</summary>
+        <p data-i18n="faq_a1">No. Gridova es una compra única con 7 días de prueba gratis. Instálalo una vez y úsalo para siempre — sin suscripción, nunca.</p>
+      </details>
+      <details>
+        <summary data-i18n="faq_q2">¿Necesita conexión a internet?</summary>
+        <p data-i18n="faq_a2">No. Gridova funciona totalmente sin conexión. Tus datos nunca salen de tu PC y no se envía nada a un servidor.</p>
+      </details>
+      <details>
+        <summary data-i18n="faq_q3">¿Qué pasa si cambio de PC?</summary>
+        <p data-i18n="faq_a3">Todo tu espacio de trabajo se guarda en un único archivo de copia cifrado. Cópialo a cualquier PC y restaura todo en segundos.</p>
+      </details>
+      <details>
+        <summary data-i18n="faq_q4">¿Es un software de contabilidad?</summary>
+        <p data-i18n="faq_a4">No — es un gestor de datos flexible. Sencillo para cualquiera, con estructura real por debajo. No necesitas saber de contabilidad.</p>
+      </details>
+      <details>
+        <summary data-i18n="faq_q5">¿Qué idiomas admite?</summary>
+        <p data-i18n="faq_a5">Siete: inglés, coreano, japonés, alemán, francés, español y portugués. Gridova sigue automáticamente el idioma de tu Windows.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="block final">
+    <h2 data-i18n="final_h">Sé dueño de tus datos. Paga una vez.</h2>
+    <p class="lead" data-i18n="final_p">Prueba todo gratis durante 7 días. Luego una sola compra y Gridova es tuyo para siempre — sin suscripción, sin nube, sin ataduras.</p>
+    <div class="cta-row">
+      <a class="cta" href="https://apps.microsoft.com/detail/9PJ9CGVZB5NX" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h8v8H3zM13 3h8v8h-8zM3 13h8v8H3zM13 13h8v8h-8z"/></svg>
+        <span data-i18n="cta">Conseguir en Microsoft Store</span>
+      </a>
+    </div>
+    <p class="note" data-i18n="note">Windows 10 / 11 · pago único · prueba gratis de 7 días</p>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>
+      <a href="https://gridova-app.github.io/privacy/" data-i18n="privacy">Política de privacidad</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/Gridova-app/support" data-i18n="support">Soporte</a>
+    </p>
+    <p>© 2026 Gridova. <span data-i18n="foot_local">Todos tus datos se almacenan localmente en tu dispositivo.</span></p>
+  </div>
+</footer>
+
+
+</body>
+</html>

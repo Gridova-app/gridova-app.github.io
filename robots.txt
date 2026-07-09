@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://garowpad-app.github.io/sitemap.xml
+Sitemap: https://gridova-app.github.io/sitemap.xml

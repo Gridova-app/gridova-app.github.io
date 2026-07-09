@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gridova — 동작 데모 미리보기 (7개 언어)</title>
+<style>
+  body{ margin:0; font-family:-apple-system,"Segoe UI","Noto Sans KR","Noto Sans JP",sans-serif; background:#0b1120; color:#e2e8f0; line-height:1.6; }
+  .wrap{ max-width:980px; margin:0 auto; padding:32px 20px 80px; }
+  h1{ font-size:24px; letter-spacing:-.01em; margin:0 0 6px; }
+  p.lead{ color:#94a3b8; margin-top:0; }
+  .bar{ display:flex; align-items:center; gap:10px; margin:18px 0 6px; }
+  select{ background:#0f172a; color:#e2e8f0; border:1px solid #334155; border-radius:8px; padding:8px 12px; font-size:14px; font-weight:600; }
+  .shot{ display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:center;
+    padding:28px 0; border-top:1px solid #1e293b; }
+  .shot:nth-child(even) .txt{ order:2; }
+  .txt h3{ margin:0 0 6px; font-size:19px; }
+  .txt p{ margin:0; color:#94a3b8; font-size:14px; }
+  video{ width:100%; border-radius:12px; border:1px solid #1e293b; box-shadow:0 8px 30px rgba(0,0,0,.4); background:#000; }
+  @media(max-width:760px){ .shot{ grid-template-columns:1fr; } .shot:nth-child(even) .txt{ order:0; } }
+  .meta{ font-size:12px; color:#64748b; margin-top:6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Gridova — 동작 데모 미리보기</h1>
+  <p class="lead">랜딩페이지에 들어갈 방식 그대로: <code>&lt;video autoplay muted loop&gt;</code> — 소리 없이 자동 반복.
+  언어를 바꾸면 영상도 그 언어로 교체됩니다(실제 사이트의 <code>data-shot</code> 패턴과 동일).</p>
+
+  <div class="bar">
+    <label for="lang">언어 / Language</label>
+    <select id="lang" onchange="setLang(this.value)">
+      <option value="ko">한국어</option>
+      <option value="en">English</option>
+      <option value="ja">日本語</option>
+      <option value="de">Deutsch</option>
+      <option value="fr">Français</option>
+      <option value="es">Español</option>
+      <option value="pt">Português</option>
+    </select>
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3 data-t="t1"></h3>
+      <p data-t="d1"></p>
+      <div class="meta">add-field.mp4 · 1280×720 · ~11s</div>
+    </div>
+    <video data-v="add-field" autoplay muted loop playsinline></video>
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3 data-t="t2"></h3>
+      <p data-t="d2"></p>
+      <div class="meta">add-data.mp4 · 1280×720 · ~13s</div>
+    </div>
+    <video data-v="add-data" autoplay muted loop playsinline></video>
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3 data-t="t3"></h3>
+      <p data-t="d3"></p>
+      <div class="meta">reference.mp4 · 1280×720 · ~14s</div>
+    </div>
+    <video data-v="reference" autoplay muted loop playsinline></video>
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3 data-t="t4"></h3>
+      <p data-t="d4"></p>
+      <div class="meta">formula.mp4 · 1280×720 · ~12s</div>
+    </div>
+    <video data-v="formula" autoplay muted loop playsinline></video>
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3 data-t="t5"></h3>
+      <p data-t="d5"></p>
+      <div class="meta">balance.mp4 · 1280×720 · ~16s</div>
+    </div>
+    <video data-v="balance" autoplay muted loop playsinline></video>
+  </div>
+
+  <div class="shot">
+    <div class="txt">
+      <h3 data-t="t6"></h3>
+      <p data-t="d6"></p>
+      <div class="meta">analysis.mp4 · 1280×720 · ~14s</div>
+    </div>
+    <video data-v="analysis" autoplay muted loop playsinline></video>
+  </div>
+</div>
+
+<script>
+  const T = {
+    ko:{ t1:"나만의 표 — 항목 추가", d1:"“항목 추가” 버튼 한 번으로 원하는 항목을 추가합니다.", t2:"빠른 데이터 입력 — 데이터 추가", d2:"새 줄을 추가하고 셀에 바로 입력하면 합계가 즉시 갱신됩니다.", t3:"다른 표에서 골라 입력 — 참조 연결", d3:"거래처·계정과목을 다른 표에서 골라 넣습니다. 엑셀은 못 하는 연결이에요.", t4:"수식 자동 계산 — 수량×단가", d4:"수량과 단가만 입력하면 금액이 즉시 자동 계산됩니다.", t5:"행마다 이어지는 누적 잔액", d5:"누적 잔액 항목을 만들면, 입금·출금에 따라 잔액이 행마다 이어집니다.", t6:"클릭 한 번, 자동 분석", d6:"메뉴를 고르면 차트와 요약 인사이트가 자동으로 만들어집니다." },
+    en:{ t1:"Build your own table — Add field", d1:"Add any field with one click of “Add field”.", t2:"Fast data entry — Add data", d2:"Add a row and type right into the cells; totals update instantly.", t3:"Pick from another table — References", d3:"Choose accounts or clients from another table — a link plain Excel can’t do.", t4:"Formulas that calculate themselves", d4:"Type quantity and price — the amount is computed instantly.", t5:"Running balance, row by row", d5:"Add a running-balance field, and it carries down row by row as you enter income and expense.", t6:"One click — automatic analysis", d6:"Pick a menu and charts and summary insights appear automatically." },
+    ja:{ t1:"自分だけの表 — 項目を追加", d1:"「項目を追加」ボタン一つで好きな項目を追加。", t2:"すばやい入力 — データを追加", d2:"行を追加してセルに直接入力すると合計が即時更新。", t3:"別の表から選んで入力 — 参照連携", d3:"勘定科目や取引先を別の表から選んで入力。Excelにはできない連携です。", t4:"数式で自動計算 — 数量×単価", d4:"数量と単価を入れるだけで金額を即時計算。", t5:"行ごとに繰り越す残高", d5:"繰越残高の項目を作ると、入金・出金に応じて残高が行ごとに繰り越されます。", t6:"ワンクリックで自動分析", d6:"メニューを選ぶとグラフと要約インサイトが自動生成。" },
+    de:{ t1:"Eigene Tabelle — Feld hinzufügen", d1:"Mit einem Klick auf „Feld hinzufügen“ jedes Feld ergänzen.", t2:"Schnelle Eingabe — Daten hinzufügen", d2:"Zeile hinzufügen, direkt in Zellen tippen — Summen sofort aktualisiert.", t3:"Aus anderer Tabelle wählen — Verknüpfung", d3:"Konten oder Kunden aus einer anderen Tabelle wählen — was Excel nicht kann.", t4:"Formeln, die selbst rechnen", d4:"Menge und Preis eingeben — der Betrag wird sofort berechnet.", t5:"Laufender Saldo, Zeile für Zeile", d5:"Legen Sie ein Saldo-Feld an — der Saldo läuft dann Zeile für Zeile weiter, während Sie Einnahmen und Ausgaben eintragen.", t6:"Ein Klick — automatische Analyse", d6:"Menü wählen — Diagramme und Zusammenfassungen erscheinen automatisch." },
+    fr:{ t1:"Votre tableau — Ajouter un champ", d1:"Ajoutez n’importe quel champ d’un clic sur « Ajouter un champ ».", t2:"Saisie rapide — Ajouter des données", d2:"Ajoutez une ligne et tapez dans les cellules ; les totaux se mettent à jour.", t3:"Choisir depuis un autre tableau — Références", d3:"Sélectionnez comptes ou clients depuis un autre tableau — impossible dans Excel.", t4:"Des formules qui calculent toutes seules", d4:"Saisissez quantité et prix — le montant se calcule aussitôt.", t5:"Solde cumulé, ligne après ligne", d5:"Créez un champ de solde courant : il se reporte ligne après ligne au fil des entrées et sorties.", t6:"Un clic — analyse automatique", d6:"Choisissez un menu — graphiques et synthèses apparaissent automatiquement." },
+    es:{ t1:"Tu propia tabla — Añadir campo", d1:"Añade cualquier campo con un clic en «Añadir campo».", t2:"Entrada rápida — Añadir datos", d2:"Añade una fila y escribe en las celdas; los totales se actualizan al instante.", t3:"Elegir de otra tabla — Referencias", d3:"Elige cuentas o clientes desde otra tabla — un vínculo que Excel no permite.", t4:"Fórmulas que se calculan solas", d4:"Escribe cantidad y precio — el importe se calcula al instante.", t5:"Saldo acumulado, fila por fila", d5:"Añade un campo de saldo corriente: se arrastra fila por fila con cada ingreso y gasto.", t6:"Un clic — análisis automático", d6:"Elige un menú y aparecen gráficos e insights automáticamente." },
+    pt:{ t1:"Sua própria tabela — Adicionar campo", d1:"Adicione qualquer campo com um clique em “Adicionar campo”.", t2:"Entrada rápida — Adicionar dados", d2:"Adicione uma linha e digite nas células; os totais atualizam na hora.", t3:"Escolher de outra tabela — Referências", d3:"Escolha contas ou clientes de outra tabela — algo que o Excel não faz.", t4:"Fórmulas que se calculam sozinhas", d4:"Digite quantidade e preço — o valor é calculado na hora.", t5:"Saldo acumulado, linha a linha", d5:"Adicione um campo de saldo corrente: ele se propaga linha a linha conforme entradas e saídas.", t6:"Um clique — análise automática", d6:"Escolha um menu e gráficos e insights aparecem automaticamente." },
+  };
+  function setLang(l){
+    const t = T[l] || T.en;
+    document.querySelectorAll("[data-t]").forEach(el => el.textContent = t[el.getAttribute("data-t")]);
+    document.querySelectorAll("video[data-v]").forEach(v => {
+      v.src = "videos/" + l + "/" + v.getAttribute("data-v") + ".mp4";
+      v.load(); v.play().catch(()=>{});
+    });
+    document.documentElement.setAttribute("lang", l);
+    document.getElementById("lang").value = l;
+  }
+  setLang("ko");
+</script>
+</body>
+</html>

@@ -1,13 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://garowpad-app.github.io/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://gridova-app.github.io/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gridova-app.github.io/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gridova-app.github.io/ko/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gridova-app.github.io/ja/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://gridova-app.github.io/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gridova-app.github.io/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://gridova-app.github.io/es/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gridova-app.github.io/pt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gridova-app.github.io/" />
   </url>
   <url>
-    <loc>https://garowpad-app.github.io/privacy/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://gridova-app.github.io/ko/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gridova-app.github.io/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gridova-app.github.io/ko/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gridova-app.github.io/ja/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://gridova-app.github.io/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gridova-app.github.io/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://gridova-app.github.io/es/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gridova-app.github.io/pt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gridova-app.github.io/" />
+  </url>
+  <url>
+    <loc>https://gridova-app.github.io/ja/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gridova-app.github.io/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gridova-app.github.io/ko/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gridova-app.github.io/ja/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://gridova-app.github.io/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gridova-app.github.io/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://gridova-app.github.io/es/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gridova-app.github.io/pt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gridova-app.github.io/" />
+  </url>
+  <url>
+    <loc>https://gridova-app.github.io/de/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gridova-app.github.io/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gridova-app.github.io/ko/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gridova-app.github.io/ja/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://gridova-app.github.io/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gridova-app.github.io/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://gridova-app.github.io/es/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gridova-app.github.io/pt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gridova-app.github.io/" />
+  </url>
+  <url>
+    <loc>https://gridova-app.github.io/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gridova-app.github.io/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gridova-app.github.io/ko/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gridova-app.github.io/ja/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://gridova-app.github.io/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gridova-app.github.io/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://gridova-app.github.io/es/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gridova-app.github.io/pt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gridova-app.github.io/" />
+  </url>
+  <url>
+    <loc>https://gridova-app.github.io/es/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gridova-app.github.io/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gridova-app.github.io/ko/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gridova-app.github.io/ja/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://gridova-app.github.io/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gridova-app.github.io/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://gridova-app.github.io/es/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gridova-app.github.io/pt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gridova-app.github.io/" />
+  </url>
+  <url>
+    <loc>https://gridova-app.github.io/pt/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gridova-app.github.io/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gridova-app.github.io/ko/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gridova-app.github.io/ja/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://gridova-app.github.io/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gridova-app.github.io/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://gridova-app.github.io/es/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gridova-app.github.io/pt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gridova-app.github.io/" />
   </url>
 </urlset>
