@@ -52,8 +52,12 @@ function hreflangBlock() {
 function buildPage(L) {
   const dict = I18N[L.code] || I18N.en;
   const pageUrl = urlOf(L.dir);
-  const title = 'Gridova — ' + dict.hero_h1;
-  const desc = dict.hero_sub;
+  // 소셜(OG/Twitter)엔 감성 히어로 문구, 검색(<title>/description)엔 키워드 버전.
+  //  seo_title/seo_desc 가 사전에 있으면 그걸, 없으면 히어로로 폴백.
+  const socialTitle = 'Gridova — ' + dict.hero_h1;
+  const metaTitle = 'Gridova — ' + (dict.seo_title || dict.hero_h1);
+  const socialDesc = dict.hero_sub;
+  const metaDesc = dict.seo_desc || dict.hero_sub;
   const ogImage = `${BASE}/images/${L.code}/03-home.png`;
   let h = tpl;
 
@@ -71,15 +75,15 @@ function buildPage(L) {
   h = h.replace('<html lang="en">', `<html lang="${L.code}">`);
 
   // (d) <head> SEO 지역화
-  h = h.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`);
-  h = h.replace(/(<meta name="description" content=")[^"]*(")/, (_m, a, b) => a + escAttr(desc) + b);
+  h = h.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(metaTitle)}</title>`);
+  h = h.replace(/(<meta name="description" content=")[^"]*(")/, (_m, a, b) => a + escAttr(metaDesc) + b);
   h = h.replace(/(<link rel="canonical" href=")[^"]*(")/, (_m, a, b) => a + pageUrl + b);
-  h = h.replace(/(<meta property="og:title" content=")[^"]*(")/, (_m, a, b) => a + escAttr(title) + b);
-  h = h.replace(/(<meta property="og:description" content=")[^"]*(")/, (_m, a, b) => a + escAttr(desc) + b);
+  h = h.replace(/(<meta property="og:title" content=")[^"]*(")/, (_m, a, b) => a + escAttr(socialTitle) + b);
+  h = h.replace(/(<meta property="og:description" content=")[^"]*(")/, (_m, a, b) => a + escAttr(socialDesc) + b);
   h = h.replace(/(<meta property="og:url" content=")[^"]*(")/, (_m, a, b) => a + pageUrl + b);
   h = h.replace(/(<meta property="og:image" content=")[^"]*(")/, (_m, a, b) => a + ogImage + b);
-  h = h.replace(/(<meta name="twitter:title" content=")[^"]*(")/, (_m, a, b) => a + escAttr(title) + b);
-  h = h.replace(/(<meta name="twitter:description" content=")[^"]*(")/, (_m, a, b) => a + escAttr(desc) + b);
+  h = h.replace(/(<meta name="twitter:title" content=")[^"]*(")/, (_m, a, b) => a + escAttr(socialTitle) + b);
+  h = h.replace(/(<meta name="twitter:description" content=")[^"]*(")/, (_m, a, b) => a + escAttr(socialDesc) + b);
   h = h.replace(/(<meta name="twitter:image" content=")[^"]*(")/, (_m, a, b) => a + ogImage + b);
 
   // og:locale 블록 재구성 (현재 언어 + 나머지 alternate)
